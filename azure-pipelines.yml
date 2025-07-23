@@ -1,0 +1,26 @@
+trigger:
+  - main
+
+variables:
+  imageName: aks-app
+
+stages:
+  - stage: Build
+    displayName: Build Docker Image
+    jobs:
+      - job: Build
+        pool:
+          vmImage: 'ubuntu-latest'
+        steps:
+          - task: DockerInstaller@0
+            displayName: Install Docker
+
+          - task: Docker@2
+            displayName: Build Docker Image
+            inputs:
+              command: build
+              Dockerfile: Dockerfile
+              tags: latest
+              repository: $(imageName)
+
+          - script: echo "✅ Docker image built successfully"
