@@ -18,5 +18,7 @@ A fullstack app (React + Node.js) deployed via CI/CD using Azure DevOps and Kube
 Run:
 --bash
 minikube start
+
 ./deploy-to-minikube.sh
+
 minikube service creative-service
